@@ -5,7 +5,8 @@ import { LOCALES, LOCALE_LABELS, type Locale } from '../i18n/locale'
 
 const SITE_URL = 'https://stelland.io/'
 const EASE = [0.32, 0.72, 0, 1] as const
-const LOGO_URL = encodeURI('/img/[스텔라앤] 가로로고.png')
+const LOGO_URL =
+  'https://imyjohoymzmbaytkhhqk.supabase.co/storage/v1/object/public/thumbnails/logo-horizontal.png'
 
 function Header() {
   const [open, setOpen] = useState(false)
