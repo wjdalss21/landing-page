@@ -43,6 +43,7 @@ const AI_SAMPLES_RAW: LocalizedWork[] = [
     tone: 'from-amber to-star',
     posterUrl: `${THUMB_BASE}/ai-1.png`,
     qrUrl: `${QR_BASE}/ai-3.png`,
+    videoUrl: `${VIDEO_BASE}/ai-3.mp4`,
   },
   {
     title: { ko: '〈SANTA〉', en: '〈SANTA〉', ja: '〈SANTA〉' },
