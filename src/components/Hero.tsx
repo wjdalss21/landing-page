@@ -12,13 +12,24 @@ function Hero() {
   const { t } = useLanguage()
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  // 일부 브라우저에서 JSX의 muted 속성만으로는 자동재생이 막히는 경우가 있어
-  // 마운트 시점에 직접 muted를 지정하고 play()를 호출해 확실히 재생시킨다.
+  // 일부 브라우저(특히 모바일)는 배터리 절약 모드 등으로 muted 영상의
+  // 자동재생마저 막는다. 마운트 시 play()를 시도하고, 실패했다면 사용자가
+  // 화면 아무 곳이나 처음 터치/클릭하는 순간 다시 재생을 시도해 확실히 튼다.
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
     video.muted = true
-    void video.play().catch(() => {})
+    const tryPlay = () => void video.play().catch(() => {})
+    tryPlay()
+
+    const unlock = () => tryPlay()
+    window.addEventListener('touchstart', unlock, { once: true, passive: true })
+    window.addEventListener('click', unlock, { once: true })
+
+    return () => {
+      window.removeEventListener('touchstart', unlock)
+      window.removeEventListener('click', unlock)
+    }
   }, [])
 
   return (
@@ -33,6 +44,8 @@ function Hero() {
         muted
         loop
         playsInline
+        // eslint-disable-next-line react/no-unknown-property
+        webkit-playsinline="true"
         preload="auto"
       />
 
