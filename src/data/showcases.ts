@@ -38,6 +38,13 @@ function localize(work: LocalizedWork, locale: Locale): Work {
 // CATEGORY 01 — AI 숏폼 애니메이션 제작 샘플
 const AI_SAMPLES_RAW: LocalizedWork[] = [
   {
+    title: { ko: '〈아린〉', en: '〈Arin〉', ja: '〈アリン〉' },
+    stats: { ko: [], en: [], ja: [] },
+    tone: 'from-amber to-star',
+    posterUrl: `${THUMB_BASE}/ai-1.png`,
+    qrUrl: `${QR_BASE}/ai-3.png`,
+  },
+  {
     title: { ko: '〈SANTA〉', en: '〈SANTA〉', ja: '〈SANTA〉' },
     stats: { ko: [], en: [], ja: [] },
     tone: 'from-ink to-accent-ink',
@@ -56,13 +63,6 @@ const AI_SAMPLES_RAW: LocalizedWork[] = [
     posterUrl: `${THUMB_BASE}/ai-3.png`,
     qrUrl: `${QR_BASE}/ai-2.png`,
     videoUrl: `${VIDEO_BASE}/ai-2.mp4`,
-  },
-  {
-    title: { ko: '〈아린〉', en: '〈Arin〉', ja: '〈アリン〉' },
-    stats: { ko: [], en: [], ja: [] },
-    tone: 'from-amber to-star',
-    posterUrl: `${THUMB_BASE}/ai-1.png`,
-    qrUrl: `${QR_BASE}/ai-3.png`,
   },
 ]
 
