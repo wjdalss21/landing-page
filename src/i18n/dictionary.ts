@@ -1,0 +1,346 @@
+import type { Locale } from './locale'
+
+export type TitleSegment = { text: string; highlight?: boolean }
+export type TitleLine = TitleSegment[]
+
+const ko = {
+  common: {
+    qrAltSuffix: '영상 QR코드',
+  },
+  header: {
+    nav: {
+      ai: 'AI 숏폼',
+      audio: '오디오웹툰',
+      motion: '모션툰',
+    },
+    officialSite: '공식 사이트',
+    projectInquiry: '프로젝트 문의',
+    menuOpen: '메뉴 열기',
+    menuClose: '메뉴 닫기',
+  },
+  hero: {
+    badge: 'Portfolio · 2026',
+    title: [
+      [{ text: '스토리 IP를,' }],
+      [
+        { text: '소리', highlight: true },
+        { text: '와 ' },
+        { text: '움직임', highlight: true },
+        { text: '으로' },
+      ],
+      [{ text: '확장합니다' }],
+    ] as TitleLine[],
+    categories: ['웹툰', '웹소설', '만화'],
+    subtitle: '원작의 연출 문법을 그대로 살려 세로형 모바일 영상으로 옮깁니다.',
+    ctaPrimary: '제작 사례 보기',
+    ctaSecondary: '프로젝트 문의',
+  },
+  stats: {
+    label: '누적 제작 편수',
+    desc: '웹툰·웹소설·만화 IP 영상화 통합 기준',
+    marquee: [
+      '웹툰',
+      '웹소설',
+      '만화',
+      'IP 영상화',
+      '브랜드 캠페인',
+      '세로형 숏폼',
+      'AI 애니메이션',
+    ],
+  },
+  categoryAI: {
+    eyebrow: 'Category 01',
+    title: 'AI 숏폼 애니메이션',
+    description:
+      '원작 텍스트와 그림을 영상 문법으로 각색하고, 카메라 연출과 장면 구성을 설계한 뒤 생성합니다. 프롬프트로 영상을 뽑는 방식이 아니라, 생성 이전 단계의 각색과 연출을 설계하는 것이 핵심입니다.',
+    steps: [
+      { no: '1', title: '원작 분석', desc: '캐릭터·세계관·핵심 장면 추출' },
+      { no: '2', title: '영상 각색', desc: '숏폼 길이에 맞춘 서사 재구성' },
+      { no: '3', title: '연출 설계', desc: '카메라·컷·리듬 그래머 적용' },
+      { no: '4', title: '생성 · 검수', desc: '일관성 검증 후 최종 출력' },
+    ],
+    samplesTitle: '제작 샘플',
+    sampleLabel: '샘플',
+    note: {
+      title: '시리즈 단위 제작 — 회차 수와 러닝타임을 지정해 일괄 생성합니다.',
+      desc: '원작 권리 귀속과 데이터 이용 범위는 계약서에 명시합니다.',
+    },
+  },
+  audioWebtoon: {
+    eyebrow: 'Category 02',
+    title: '오디오웹툰',
+    description:
+      '말풍선과 컷이 원작 연출 그대로 움직이는 세로형 콘텐츠입니다. 팬 대상 펀딩 상품으로 먼저 공개했고, 온·오프라인 통합 상품으로 전개합니다.',
+  },
+  motionToon: {
+    eyebrow: 'Category 03',
+    title: '모션툰',
+    description:
+      '라이트 애니메이션을 컷 단위로 압축한 모바일 전용 포맷입니다. 재생 호흡이 짧아 일본·북미 플랫폼의 피드 환경에 맞춰 조정했습니다.',
+    note: {
+      title: '일본·해외 제안 시 1순위 포맷',
+      desc: '컷 단위 압축으로 제작 기간과 비용이 낮고, 자막·더빙 현지화만으로 언어 확장이 가능합니다.',
+    },
+  },
+  cta: {
+    badge: 'Contact',
+    headingLines: ['당신의 IP를 소리와', '움직임으로 확장할 시간'],
+    desc: '보유하신 웹툰·웹소설·만화 IP를 세로형 숏폼 영상으로. 함께할 프로젝트를 들려주세요.',
+    emailPlaceholder: '이메일 주소',
+    submit: '문의하기',
+    note: '영업일 기준 24시간 이내에 회신드립니다.',
+  },
+  footer: {
+    tagline: '스토리 IP를 소리와 움직임으로 확장하는 스튜디오.',
+    visitSite: 'stelland.io 방문하기',
+    links: [
+      { label: '서비스', href: '#services' },
+      { label: '실적', href: '#stats' },
+      { label: '프로세스', href: '#process' },
+      { label: '문의', href: '#contact' },
+    ],
+    copyright: '© 2026 STELLA&. All rights reserved.',
+    slogan: 'Story IP, expanded.',
+  },
+}
+
+const en: typeof ko = {
+  common: {
+    qrAltSuffix: 'video QR code',
+  },
+  header: {
+    nav: {
+      ai: 'AI Short-form',
+      audio: 'Audio Webtoon',
+      motion: 'Motion Toon',
+    },
+    officialSite: 'Official Site',
+    projectInquiry: 'Get in Touch',
+    menuOpen: 'Open menu',
+    menuClose: 'Close menu',
+  },
+  hero: {
+    badge: 'Portfolio · 2026',
+    title: [
+      [{ text: 'Story IP,' }],
+      [
+        { text: 'through ' },
+        { text: 'sound', highlight: true },
+        { text: ' and ' },
+        { text: 'motion', highlight: true },
+      ],
+      [{ text: 'bring it to life.' }],
+    ],
+    categories: ['Webtoon', 'Web Novel', 'Comics'],
+    subtitle:
+      "We preserve the original's storytelling grammar and adapt it into vertical mobile video.",
+    ctaPrimary: 'View Our Work',
+    ctaSecondary: 'Get in Touch',
+  },
+  stats: {
+    label: 'Total Productions',
+    desc: 'Combined webtoon, web novel & comic IP video adaptations',
+    marquee: [
+      'Webtoon',
+      'Web Novel',
+      'Comics',
+      'IP Video Adaptation',
+      'Brand Campaign',
+      'Vertical Short-form',
+      'AI Animation',
+    ],
+  },
+  categoryAI: {
+    eyebrow: 'Category 01',
+    title: 'AI Short-form Animation',
+    description:
+      "We adapt the original text and artwork into video grammar, then design camera direction and scene composition before generating. Rather than simply prompting for a video, the core is designing the adaptation and direction before generation.",
+    steps: [
+      {
+        no: '1',
+        title: 'Source Analysis',
+        desc: 'Extract characters, world-building & key scenes',
+      },
+      {
+        no: '2',
+        title: 'Video Adaptation',
+        desc: 'Restructure the narrative for short-form length',
+      },
+      {
+        no: '3',
+        title: 'Direction Design',
+        desc: 'Apply camera, cut & rhythm grammar',
+      },
+      {
+        no: '4',
+        title: 'Generate & Review',
+        desc: 'Final output after consistency checks',
+      },
+    ],
+    samplesTitle: 'Production Samples',
+    sampleLabel: 'Sample',
+    note: {
+      title:
+        'Produced at series scale — batch-generated by specifying episode count and runtime.',
+      desc: 'Original IP ownership and data usage scope are specified in the contract.',
+    },
+  },
+  audioWebtoon: {
+    eyebrow: 'Category 02',
+    title: 'Audio Webtoon',
+    description:
+      'Vertical-format content where speech bubbles and panels move exactly as directed in the original. First released as a fan-funded product, now expanding into an integrated online/offline offering.',
+  },
+  motionToon: {
+    eyebrow: 'Category 03',
+    title: 'Motion Toon',
+    description:
+      "A mobile-only format that compresses light animation cut by cut. Its short playback rhythm is tuned to fit the feed environments of Japanese and North American platforms.",
+    note: {
+      title: 'Top-choice format for Japan & overseas proposals',
+      desc: 'Cut-based compression keeps production time and cost low, and language expansion is possible through subtitle/dub localization alone.',
+    },
+  },
+  cta: {
+    badge: 'Contact',
+    headingLines: ['Time to expand your IP through sound and motion'],
+    desc: "Turn your webtoon, web novel, or comic IP into vertical short-form video. Tell us about the project you'd like to work on together.",
+    emailPlaceholder: 'Email address',
+    submit: 'Send Inquiry',
+    note: "We'll respond within 24 business hours.",
+  },
+  footer: {
+    tagline: 'A studio that expands Story IP through sound and motion.',
+    visitSite: 'Visit stelland.io',
+    links: [
+      { label: 'Services', href: '#services' },
+      { label: 'Track Record', href: '#stats' },
+      { label: 'Process', href: '#process' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    copyright: '© 2026 STELLA&. All rights reserved.',
+    slogan: 'Story IP, expanded.',
+  },
+}
+
+const ja: typeof ko = {
+  common: {
+    qrAltSuffix: '映像QRコード',
+  },
+  header: {
+    nav: {
+      ai: 'AIショートフォーム',
+      audio: 'オーディオウェブトゥーン',
+      motion: 'モーショントゥーン',
+    },
+    officialSite: '公式サイト',
+    projectInquiry: 'お問い合わせ',
+    menuOpen: 'メニューを開く',
+    menuClose: 'メニューを閉じる',
+  },
+  hero: {
+    badge: 'Portfolio · 2026',
+    title: [
+      [{ text: 'ストーリーIPを、' }],
+      [
+        { text: '音', highlight: true },
+        { text: 'と' },
+        { text: '動き', highlight: true },
+        { text: 'で' },
+      ],
+      [{ text: '拡張します' }],
+    ],
+    categories: ['ウェブトゥーン', 'ウェブ小説', '漫画'],
+    subtitle:
+      '原作の演出文法をそのまま活かし、縦型モバイル映像に仕上げます。',
+    ctaPrimary: '制作事例を見る',
+    ctaSecondary: 'プロジェクトのご相談',
+  },
+  stats: {
+    label: '累計制作本数',
+    desc: 'ウェブトゥーン・ウェブ小説・漫画IP映像化の合算基準',
+    marquee: [
+      'ウェブトゥーン',
+      'ウェブ小説',
+      '漫画',
+      'IP映像化',
+      'ブランドキャンペーン',
+      '縦型ショート',
+      'AIアニメーション',
+    ],
+  },
+  categoryAI: {
+    eyebrow: 'Category 01',
+    title: 'AIショートフォームアニメーション',
+    description:
+      '原作のテキストと絵を映像文法に翻案し、カメラ演出とシーン構成を設計した上で生成します。プロンプトで映像を出す方式ではなく、生成前段階の翻案と演出の設計こそが核心です。',
+    steps: [
+      {
+        no: '1',
+        title: '原作分析',
+        desc: 'キャラクター・世界観・キーシーンの抽出',
+      },
+      {
+        no: '2',
+        title: '映像脚色',
+        desc: 'ショートフォームの尺に合わせた物語再構成',
+      },
+      {
+        no: '3',
+        title: '演出設計',
+        desc: 'カメラ・カット・リズム文法の適用',
+      },
+      {
+        no: '4',
+        title: '生成・検収',
+        desc: '一貫性検証後の最終出力',
+      },
+    ],
+    samplesTitle: '制作サンプル',
+    sampleLabel: 'サンプル',
+    note: {
+      title: 'シリーズ単位の制作 — 話数とランタイムを指定して一括生成します。',
+      desc: '原作の権利帰属とデータ利用範囲は契約書に明記します。',
+    },
+  },
+  audioWebtoon: {
+    eyebrow: 'Category 02',
+    title: 'オーディオウェブトゥーン',
+    description:
+      '吹き出しとコマが原作の演出そのままに動く縦型コンテンツです。ファン向けのクラウドファンディング商品として先行公開し、オンライン・オフライン統合商品として展開しています。',
+  },
+  motionToon: {
+    eyebrow: 'Category 03',
+    title: 'モーショントゥーン',
+    description:
+      'ライトアニメーションをカット単位で圧縮したモバイル専用フォーマットです。再生のテンポが短く、日本・北米プラットフォームのフィード環境に合わせて調整しています。',
+    note: {
+      title: '日本・海外提案時の第一候補フォーマット',
+      desc: 'カット単位の圧縮で制作期間とコストが低く、字幕・吹き替えのローカライズだけで言語展開が可能です。',
+    },
+  },
+  cta: {
+    badge: 'Contact',
+    headingLines: ['あなたのIPを音と動きで拡張する時間'],
+    desc: 'お持ちのウェブトゥーン・ウェブ小説・漫画IPを縦型ショート映像に。ご一緒したいプロジェクトをお聞かせください。',
+    emailPlaceholder: 'メールアドレス',
+    submit: 'お問い合わせ',
+    note: '営業日基準24時間以内にご返信いたします。',
+  },
+  footer: {
+    tagline: 'ストーリーIPを音と動きで拡張するスタジオ。',
+    visitSite: 'stelland.ioを訪問',
+    links: [
+      { label: 'サービス', href: '#services' },
+      { label: '実績', href: '#stats' },
+      { label: 'プロセス', href: '#process' },
+      { label: 'お問い合わせ', href: '#contact' },
+    ],
+    copyright: '© 2026 STELLA&. All rights reserved.',
+    slogan: 'Story IP, expanded.',
+  },
+}
+
+export type Dictionary = typeof ko
+
+export const dictionary: Record<Locale, Dictionary> = { ko, en, ja }

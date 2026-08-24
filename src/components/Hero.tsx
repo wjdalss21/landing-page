@@ -1,36 +1,172 @@
+import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
+import type { TitleLine } from '../i18n/dictionary'
+
+const EASE = [0.32, 0.72, 0, 1] as const
+
+const HERO_VIDEO_URL =
+  'https://imyjohoymzmbaytkhhqk.supabase.co/storage/v1/object/public/videos/hero-bg.mp4'
+
 function Hero() {
+  const { t } = useLanguage()
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // 일부 브라우저에서 JSX의 muted 속성만으로는 자동재생이 막히는 경우가 있어
+  // 마운트 시점에 직접 muted를 지정하고 play()를 호출해 확실히 재생시킨다.
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    void video.play().catch(() => {})
+  }, [])
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white">
-      <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-32">
-        <span className="inline-block rounded-full bg-brand-100 px-4 py-1.5 text-sm font-medium text-brand-700">
-          🚀 새로운 방식의 비즈니스 솔루션
-        </span>
-        <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-6xl">
-          당신의 비즈니스를
-          <br />
-          <span className="text-brand-600">한 단계 더</span> 성장시키세요
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 md:text-xl">
-          복잡한 작업은 저희에게 맡기고, 당신은 중요한 일에만 집중하세요.
-          지금 바로 시작해보세요.
-        </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
-            href="#cta"
-            className="w-full rounded-lg bg-brand-600 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:bg-brand-700 sm:w-auto"
+    <section className="relative min-h-[100dvh] overflow-hidden pt-36 md:pt-44">
+      {/* 배경: 동영상 */}
+      <video
+        ref={videoRef}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+        src={HERO_VIDEO_URL}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      />
+
+      {/* 배경 오버레이: 텍스트 가독성을 위한 어두운 톤 */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-black/40"
+      />
+
+      {/* 배경 오버레이: 은은한 파스텔 그라데이션 (연하게) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 left-1/2 z-[2] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-accent-soft/40 blur-[120px]"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pb-24">
+        {/* 타이포 */}
+        <div className="max-w-2xl">
+          <motion.span
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-paper/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
           >
-            무료로 시작하기
-          </a>
-          <a
-            href="#features"
-            className="w-full rounded-lg border border-gray-300 bg-white px-8 py-3.5 text-base font-semibold text-gray-700 transition-colors hover:border-gray-400 sm:w-auto"
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            {t.hero.badge}
+          </motion.span>
+
+          <h1 className="mt-7 text-balance font-sans text-[2.7rem] font-bold leading-[1.06] tracking-tightest text-paper drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-[4.2rem]">
+            {t.hero.title.map((line, i) => (
+              <Line key={i} delay={0.05 + i * 0.08}>
+                <TitleLineText line={line} />
+              </Line>
+            ))}
+          </h1>
+
+          <motion.div
+            className="mt-8 flex flex-wrap items-center gap-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
           >
-            자세히 알아보기
-          </a>
+            {t.hero.categories.map((c) => (
+              <span
+                key={c}
+                className="rounded-full border border-line bg-paper px-4 py-1.5 text-sm font-medium text-ink"
+              >
+                {c}
+              </span>
+            ))}
+          </motion.div>
+
+          <motion.p
+            className="mt-6 max-w-md text-balance text-lg leading-relaxed text-muted"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.38 }}
+          >
+            {t.hero.subtitle}
+          </motion.p>
+
+          <motion.div
+            className="mt-10 flex flex-wrap items-center gap-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.5 }}
+          >
+            <a
+              href="#ai-shortform"
+              className="group flex items-center gap-2 rounded-full bg-ink py-3 pl-6 pr-2.5 text-sm font-medium text-paper transition-transform duration-300 ease-fluid active:scale-[0.98]"
+            >
+              {t.hero.ctaPrimary}
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-paper/15 transition-transform duration-300 ease-fluid group-hover:translate-x-0.5 group-hover:-translate-y-[1px]">
+                <ArrowUpRight />
+              </span>
+            </a>
+            <a
+              href="#contact"
+              className="rounded-full border border-line bg-paper px-6 py-3 text-sm font-medium text-ink transition-colors duration-300 ease-fluid hover:border-ink/30"
+            >
+              {t.hero.ctaSecondary}
+            </a>
+          </motion.div>
         </div>
-        <p className="mt-6 text-sm text-gray-500">신용카드 없이 14일 무료 체험</p>
       </div>
     </section>
+  )
+}
+
+function TitleLineText({ line }: { line: TitleLine }) {
+  return (
+    <>
+      {line.map((segment, i) =>
+        segment.highlight ? (
+          <span key={i} className="text-accent-ink">
+            {segment.text}
+          </span>
+        ) : (
+          <span key={i}>{segment.text}</span>
+        ),
+      )}
+    </>
+  )
+}
+
+function Line({ children, delay }: { children: React.ReactNode; delay: number }) {
+  return (
+    <span className="block overflow-hidden">
+      <motion.span
+        className="block"
+        initial={{ y: '110%' }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.9, ease: EASE, delay }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  )
+}
+
+function ArrowUpRight() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M7 17L17 7M8 7h9v9" />
+    </svg>
   )
 }
 
