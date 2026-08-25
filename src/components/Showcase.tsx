@@ -163,7 +163,12 @@ function WorkCard({ work, aspect }: { work: Work; aspect: string }) {
 
       {/* 메타 */}
       <div className="px-2.5 py-4">
-        <h3 className="font-semibold text-ink">{work.title}</h3>
+        <h3
+          className="line-clamp-2 min-h-[2.75em] font-semibold leading-snug text-ink"
+          title={work.title}
+        >
+          {work.title}
+        </h3>
         {work.platform && (
           <span className="mt-2 inline-block rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-medium text-accent-ink">
             {work.platform}
@@ -171,7 +176,11 @@ function WorkCard({ work, aspect }: { work: Work; aspect: string }) {
         )}
         <div className="mt-3 space-y-0.5">
           {work.stats.map((s) => (
-            <p key={s} className="text-[13px] leading-snug text-muted">
+            <p
+              key={s}
+              className="line-clamp-2 min-h-[2.75em] text-[13px] leading-snug text-muted"
+              title={s}
+            >
               {s}
             </p>
           ))}

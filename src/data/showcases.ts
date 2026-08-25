@@ -78,10 +78,7 @@ const AUDIO_WORKS_RAW: LocalizedWork[] = [
     },
     stats: {
       ko: ['300화 완결 · 평균 별점 9.9', '2021 오늘의 우리만화상'],
-      en: [
-        '300 episodes completed · Avg. rating 9.9',
-        "2021 Today's Webtoon Award",
-      ],
+      en: ['300 episodes · Rating 9.9', '2021 Webtoon Award'],
       ja: ['全300話完結・平均評点9.9', '2021 今日の我が漫画賞'],
     },
     tone: 'from-ink to-accent-ink',
@@ -102,10 +99,7 @@ const AUDIO_WORKS_RAW: LocalizedWork[] = [
     },
     stats: {
       ko: ['유료 대여작 최초 별점 9.98', '단행본 7권 · 다국어 연재'],
-      en: [
-        'First paid-rental title to reach a 9.98 rating',
-        '7-volume print edition · serialized in multiple languages',
-      ],
+      en: ['First paid rental at 9.98', '7 volumes · multilingual'],
       ja: ['有料貸本作品初の評点9.98', '単行本7巻・多言語連載'],
     },
     tone: 'from-accent to-amber',
@@ -126,10 +120,7 @@ const AUDIO_WORKS_RAW: LocalizedWork[] = [
     },
     stats: {
       ko: ['영어판 구독 160만 · 조회 1.38억', '판타지 로맨스 최상위'],
-      en: [
-        '1.6M English subscribers · 138M views',
-        'Top-tier fantasy romance',
-      ],
+      en: ['1.6M EN subs · 138M views', 'Top-tier fantasy romance'],
       ja: ['英語版購読160万・閲覧1.38億', 'ファンタジーロマンス最上位'],
     },
     tone: 'from-amber to-star',
@@ -146,10 +137,7 @@ const AUDIO_WORKS_RAW: LocalizedWork[] = [
     },
     stats: {
       ko: ['누적 조회 1.4억 · 관심 134만', '카카오 대표 스포츠 IP'],
-      en: [
-        '140M cumulative views · 1.34M follows',
-        "Kakao's flagship sports IP",
-      ],
+      en: ['140M views · 1.34M follows', "Kakao's flagship sports IP"],
       ja: ['累計閲覧1.4億・関心134万', 'カカオ代表スポーツIP'],
     },
     tone: 'from-accent-ink to-accent',
@@ -166,10 +154,7 @@ const AUDIO_WORKS_RAW: LocalizedWork[] = [
     platform: { ko: '카카오페이지', en: 'Kakao Page', ja: 'カカオページ' },
     stats: {
       ko: ['누적 열람 4,300만 · 별점 10.0', '카카오페이지 대표 로판'],
-      en: [
-        '43M cumulative reads · Perfect 10.0 rating',
-        "Kakao Page's flagship fantasy romance",
-      ],
+      en: ['43M reads · Perfect 10.0', "Kakao Page's top romance IP"],
       ja: ['累計閲覧4,300万・評点10.0', 'カカオページ代表ロファン'],
     },
     tone: 'from-star to-amber',
@@ -205,10 +190,7 @@ const MOTION_WORKS_RAW: LocalizedWork[] = [
     },
     stats: {
       ko: ['누적 조회 상위 스릴러', '드라마 영상화 원작'],
-      en: [
-        'Top-ranked thriller by views',
-        'Source material for a live-action drama',
-      ],
+      en: ['Top thriller by views', 'Adapted into a live drama'],
       ja: ['累計閲覧上位スリラー', 'ドラマ映像化原作'],
     },
     tone: 'from-ink to-accent-ink',
@@ -220,7 +202,7 @@ const MOTION_WORKS_RAW: LocalizedWork[] = [
     title: { ko: '더 복서', en: 'The Boxer', ja: 'ザ・ボクサー' },
     stats: {
       ko: ['스포츠 액션', '타격감과 사운드 시너지'],
-      en: ['Sports action', 'Synergy of hit impact and sound design'],
+      en: ['Sports action', 'Powerful hits, rich sound'],
       ja: ['スポーツアクション', '打撃感とサウンドのシナジー'],
     },
     tone: 'from-accent-ink to-accent',
