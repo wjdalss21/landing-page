@@ -1,6 +1,5 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Stats from './components/Stats'
 import CategoryAI from './components/CategoryAI'
 import Showcase from './components/Showcase'
 import CTASection from './components/CTASection'
@@ -17,7 +16,6 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <Stats />
         <CategoryAI />
         <Showcase
           id="audio-webtoon"

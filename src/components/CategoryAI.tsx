@@ -19,13 +19,13 @@ function CategoryAI() {
           {/* 좌: 설명 + 프로세스 */}
           <div>
             <Reveal>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-ink">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
                 {t.categoryAI.eyebrow}
               </span>
-              <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+              <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-accent-light sm:text-5xl">
                 {t.categoryAI.title}
               </h2>
-              <p className="mt-6 max-w-lg leading-relaxed text-muted">
+              <p className="mt-6 max-w-lg leading-relaxed text-paper/70">
                 {t.categoryAI.description}
               </p>
             </Reveal>
@@ -38,8 +38,8 @@ function CategoryAI() {
                       {step.no}
                     </span>
                     <div>
-                      <h3 className="font-semibold text-ink">{step.title}</h3>
-                      <p className="mt-1 text-sm text-muted">{step.desc}</p>
+                      <h3 className="font-semibold text-paper">{step.title}</h3>
+                      <p className="mt-1 text-sm text-paper/60">{step.desc}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -50,11 +50,11 @@ function CategoryAI() {
           {/* 우: 제작 샘플 */}
           <div>
             <Reveal>
-              <h3 className="font-display text-xl font-bold text-ink">
+              <h3 className="font-display text-xl font-bold text-paper">
                 {t.categoryAI.samplesTitle}
               </h3>
             </Reveal>
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5">
               {samples.map((s, i) => (
                 <Reveal key={`${s.title}-${i}`} delay={i * 0.1}>
                   <SampleCard work={s} index={i} />
@@ -93,9 +93,9 @@ function SampleCard({ work, index }: { work: Work; index: number }) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.4, ease: EASE }}
       onClick={playsInlineOnClick && !isPlaying ? handlePlayClick : undefined}
-      className={`group overflow-hidden rounded-[1.2rem] border border-line bg-paper p-1.5 ${playsInlineOnClick && !isPlaying ? 'cursor-pointer' : ''}`}
+      className={`group overflow-hidden rounded-2xl border border-line bg-paper p-1.5 ${playsInlineOnClick && !isPlaying ? 'cursor-pointer' : ''}`}
     >
-      <div className="relative aspect-[9/16] overflow-hidden rounded-[0.9rem] bg-ink">
+      <div className="relative aspect-[9/16] overflow-hidden rounded-xl bg-ink">
         {work.videoUrl ? (
           <video
             ref={videoRef}

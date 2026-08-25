@@ -48,14 +48,14 @@ function Showcase({
         <Reveal>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-ink">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
                 {eyebrow}
               </span>
-              <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+              <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-accent-light sm:text-5xl">
                 {title}
               </h2>
             </div>
-            <p className="max-w-md text-balance leading-relaxed text-muted">
+            <p className="max-w-md text-balance leading-relaxed text-paper/70">
               {description}
             </p>
           </div>
@@ -107,10 +107,10 @@ function WorkCard({ work, aspect }: { work: Work; aspect: string }) {
       whileHover={{ y: -6 }}
       transition={{ duration: 0.4, ease: EASE }}
       onClick={playsInlineOnClick && !isPlaying ? handlePlayClick : undefined}
-      className={`group overflow-hidden rounded-[1.4rem] border border-line bg-paper p-1.5 shadow-[0_20px_40px_-30px_rgba(58,42,34,0.4)] ${playsInlineOnClick && !isPlaying ? 'cursor-pointer' : ''}`}
+      className={`group overflow-hidden rounded-2xl border border-line bg-paper p-1.5 shadow-[0_20px_40px_-30px_rgba(48,72,112,0.4)] ${playsInlineOnClick && !isPlaying ? 'cursor-pointer' : ''}`}
     >
       {/* 포스터 / 동영상 */}
-      <div className={`relative ${aspect} overflow-hidden rounded-[1rem] bg-ink`}>
+      <div className={`relative ${aspect} overflow-hidden rounded-xl bg-ink`}>
         {work.videoUrl ? (
           <video
             ref={videoRef}

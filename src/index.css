@@ -16,7 +16,7 @@
 
   body {
     background-color: theme('colors.canvas');
-    color: theme('colors.ink');
+    color: theme('colors.paper');
     font-feature-settings: 'ss01', 'cv01';
     overflow-x: hidden;
     width: 100%;

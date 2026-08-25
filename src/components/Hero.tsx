@@ -1,68 +1,17 @@
-import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { animate, motion, useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 import type { TitleLine } from '../i18n/dictionary'
 
 const EASE = [0.32, 0.72, 0, 1] as const
 
-const HERO_VIDEO_URL =
-  'https://imyjohoymzmbaytkhhqk.supabase.co/storage/v1/object/public/videos/hero-bg.mp4'
-
 function Hero() {
   const { t } = useLanguage()
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  // 일부 브라우저(특히 모바일)는 배터리 절약 모드 등으로 muted 영상의
-  // 자동재생마저 막는다. 마운트 시 play()를 시도하고, 실패했다면 사용자가
-  // 화면 아무 곳이나 처음 터치/클릭하는 순간 다시 재생을 시도해 확실히 튼다.
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    video.muted = true
-    const tryPlay = () => void video.play().catch(() => {})
-    tryPlay()
-
-    const unlock = () => tryPlay()
-    window.addEventListener('touchstart', unlock, { once: true, passive: true })
-    window.addEventListener('click', unlock, { once: true })
-
-    return () => {
-      window.removeEventListener('touchstart', unlock)
-      window.removeEventListener('click', unlock)
-    }
-  }, [])
 
   return (
-    <section className="relative min-h-[100dvh] overflow-hidden pt-36 md:pt-44">
-      {/* 배경: 동영상 */}
-      <video
-        ref={videoRef}
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
-        src={HERO_VIDEO_URL}
-        autoPlay
-        muted
-        loop
-        playsInline
-        // eslint-disable-next-line react/no-unknown-property
-        webkit-playsinline="true"
-        preload="auto"
-      />
-
-      {/* 배경 오버레이: 텍스트 가독성을 위한 어두운 톤 */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-black/40"
-      />
-
-      {/* 배경 오버레이: 은은한 파스텔 그라데이션 (연하게) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-32 left-1/2 z-[2] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-accent-soft/40 blur-[120px]"
-      />
-
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pb-24">
-        {/* 타이포 */}
+    <section className="relative min-h-[100dvh] overflow-hidden bg-canvas pt-36 md:pt-44">
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 pb-24 lg:grid-cols-[1.3fr_1fr]">
+        {/* 좌: 타이포 */}
         <div className="max-w-2xl">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-line bg-paper/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted"
@@ -91,7 +40,7 @@ function Hero() {
             {t.hero.categories.map((c) => (
               <span
                 key={c}
-                className="rounded-full border border-line bg-paper px-4 py-1.5 text-sm font-medium text-ink"
+                className="rounded-md border border-line bg-paper px-4 py-1.5 text-sm font-medium text-ink"
               >
                 {c}
               </span>
@@ -130,8 +79,90 @@ function Hero() {
             </a>
           </motion.div>
         </div>
+
+        {/* 우: 실적 스탯 — 헤드라인과 같은 높이, 중앙 정렬로 크게 */}
+        <motion.div
+          id="stats"
+          className="flex justify-center lg:justify-end"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
+        >
+          <div className="inline-flex flex-col items-start gap-4 rounded-3xl bg-black/25 px-8 py-8 backdrop-blur-md sm:px-10 sm:py-10">
+            <div className="flex items-baseline gap-2">
+              <Counter
+                to={200}
+                className="font-sans text-7xl font-bold leading-none tracking-tightest text-paper sm:text-8xl lg:text-9xl"
+              />
+              <span className="font-display text-4xl font-bold text-accent sm:text-5xl">
+                +
+              </span>
+            </div>
+            <div className="h-px w-16 bg-paper/20" />
+            <div>
+              <p className="text-lg font-semibold text-paper sm:text-xl">
+                {t.stats.label}
+              </p>
+              <p className="mt-2 max-w-xs leading-relaxed text-paper/60">
+                {t.stats.desc}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* 키워드 마퀴 — '움직임' 표현, 첫 화면 하단 풀블리드 스트립 */}
+      <div className="relative z-10 mt-10 overflow-hidden border-t border-paper/15 bg-black/20 py-5 backdrop-blur-sm md:mt-16">
+        <div className="flex w-max animate-marquee gap-4 pr-4">
+          {[...t.stats.marquee, ...t.stats.marquee].map((word, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-4 whitespace-nowrap font-display text-xl font-medium text-paper/80 sm:text-2xl"
+            >
+              {word}
+              <Star />
+            </span>
+          ))}
+        </div>
       </div>
     </section>
+  )
+}
+
+/** 브랜드 핑크 채색 + 네이비 아웃라인의 스텔라 별 */
+function Star() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" className="shrink-0">
+      <path
+        d="M12 2.5l2.6 6.6L21.5 12l-6.9 2.6L12 21.5l-2.6-6.9L2.5 12l6.9-2.9L12 2.5z"
+        fill="#F88090"
+        stroke="#304870"
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function Counter({ to, className }: { to: number; className?: string }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    if (!inView) return
+    const controls = animate(0, to, {
+      duration: 1.6,
+      ease: [0.32, 0.72, 0, 1],
+      onUpdate: (v) => setValue(Math.round(v)),
+    })
+    return () => controls.stop()
+  }, [inView, to])
+
+  return (
+    <span ref={ref} className={className}>
+      {value}
+    </span>
   )
 }
 
