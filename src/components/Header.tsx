@@ -21,7 +21,7 @@ function Header() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-5">
-        <div className="flex w-full max-w-3xl items-center justify-between rounded-full border border-line/80 bg-paper/70 py-2.5 pl-6 pr-2.5 shadow-[0_8px_30px_-12px_rgba(11,11,12,0.15)] backdrop-blur-xl">
+        <div className="flex w-full max-w-3xl items-center justify-between rounded-2xl border border-line/80 bg-paper/70 py-2.5 pl-6 pr-2.5 shadow-[0_8px_30px_-12px_rgba(11,11,12,0.15)] backdrop-blur-xl">
           <a href="#" className="flex items-center" aria-label="STELLA& 홈">
             <img src={LOGO_URL} alt="STELLA&" className="h-5 w-auto sm:h-6" />
           </a>
@@ -100,7 +100,7 @@ function Header() {
                     : undefined
                 }
                 onClick={() => setOpen(false)}
-                className="font-display text-5xl font-bold tracking-tight text-ink"
+                className="font-display text-5xl font-bold tracking-tight text-paper"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
@@ -181,8 +181,8 @@ function MobileLocaleButton({ locale }: { locale: Locale }) {
       onClick={() => setLocale(locale)}
       className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors duration-300 ease-fluid ${
         current === locale
-          ? 'border-ink bg-ink text-paper'
-          : 'border-line text-muted hover:text-ink'
+          ? 'border-accent bg-accent text-ink'
+          : 'border-paper/30 text-paper/60 hover:text-paper'
       }`}
     >
       {LOCALE_LABELS[locale]}

@@ -4,17 +4,17 @@ function Footer() {
   const { t } = useLanguage()
 
   return (
-    <footer className="border-t border-line bg-canvas">
+    <footer className="border-t border-paper/15 bg-canvas">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <div>
             <a
               href="#"
-              className="font-display text-3xl font-bold tracking-tight text-black"
+              className="font-display text-3xl font-bold tracking-tight text-paper"
             >
               STELLA&amp;
             </a>
-            <p className="mt-4 max-w-xs leading-relaxed text-muted">
+            <p className="mt-4 max-w-xs leading-relaxed text-paper/60">
               {t.footer.tagline}
             </p>
             <a
@@ -46,7 +46,7 @@ function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-muted transition-colors duration-300 ease-fluid hover:text-ink"
+                className="text-sm text-paper/60 transition-colors duration-300 ease-fluid hover:text-paper"
               >
                 {link.label}
               </a>
@@ -54,7 +54,7 @@ function Footer() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-line pt-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-2 border-t border-paper/15 pt-8 text-sm text-paper/50 sm:flex-row sm:items-center sm:justify-between">
           <p>{t.footer.copyright}</p>
           <p className="font-display">{t.footer.slogan}</p>
         </div>
