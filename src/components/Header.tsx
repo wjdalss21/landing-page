@@ -31,7 +31,7 @@ function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted transition-colors duration-300 ease-fluid hover:text-ink"
+                className="text-sm font-semibold text-accent-ink transition-colors duration-300 ease-fluid hover:text-ink"
               >
                 {item.label}
               </a>

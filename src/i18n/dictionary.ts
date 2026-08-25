@@ -86,6 +86,8 @@ const ko = {
     badge: 'Contact',
     headingLines: ['당신의 IP를 소리와', '움직임으로 확장할 시간'],
     desc: '보유하신 웹툰·웹소설·만화 IP를 세로형 숏폼 영상으로. 함께할 프로젝트를 들려주세요.',
+    companyPlaceholder: '회사명',
+    contactPlaceholder: '담당자명',
     emailPlaceholder: '이메일 주소',
     submit: '문의하기',
     note: '영업일 기준 24시간 이내에 회신드립니다.',
@@ -100,7 +102,7 @@ const ko = {
       { label: '문의', href: '#contact' },
     ],
     copyright: '© 2026 STELLA&. All rights reserved.',
-    slogan: 'Story IP, expanded.',
+    slogan: 'Story In, Moving Out',
   },
 }
 
@@ -205,6 +207,8 @@ const en: typeof ko = {
     badge: 'Contact',
     headingLines: ['Time to expand your IP through sound and motion'],
     desc: "Turn your webtoon, web novel, or comic IP into vertical short-form video. Tell us about the project you'd like to work on together.",
+    companyPlaceholder: 'Company name',
+    contactPlaceholder: 'Contact name',
     emailPlaceholder: 'Email address',
     submit: 'Send Inquiry',
     note: "We'll respond within 24 business hours.",
@@ -219,7 +223,7 @@ const en: typeof ko = {
       { label: 'Contact', href: '#contact' },
     ],
     copyright: '© 2026 STELLA&. All rights reserved.',
-    slogan: 'Story IP, expanded.',
+    slogan: 'Story In, Moving Out',
   },
 }
 
@@ -323,6 +327,8 @@ const ja: typeof ko = {
     badge: 'Contact',
     headingLines: ['あなたのIPを音と動きで拡張する時間'],
     desc: 'お持ちのウェブトゥーン・ウェブ小説・漫画IPを縦型ショート映像に。ご一緒したいプロジェクトをお聞かせください。',
+    companyPlaceholder: '会社名',
+    contactPlaceholder: 'ご担当者名',
     emailPlaceholder: 'メールアドレス',
     submit: 'お問い合わせ',
     note: '営業日換算で24時間以内にご返信いたします。',
@@ -337,7 +343,7 @@ const ja: typeof ko = {
       { label: 'お問い合わせ', href: '#contact' },
     ],
     copyright: '© 2026 STELLA&. All rights reserved.',
-    slogan: 'Story IP, expanded.',
+    slogan: 'Story In, Moving Out',
   },
 }
 

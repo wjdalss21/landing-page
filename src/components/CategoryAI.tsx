@@ -15,7 +15,7 @@ function CategoryAI() {
   return (
     <section id="ai-shortform" className="py-28 md:py-36">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           {/* 좌: 설명 + 프로세스 */}
           <div>
             <Reveal>
@@ -30,37 +30,36 @@ function CategoryAI() {
               </p>
             </Reveal>
 
-            <div className="mt-12 flex flex-col gap-6">
+            <div className="mt-10 flex items-center justify-between">
               {t.categoryAI.steps.map((step, i) => (
-                <Reveal key={step.no} delay={i * 0.08}>
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-soft font-display text-sm font-bold text-accent-ink">
-                      {step.no}
-                    </span>
-                    <div>
-                      <h3 className="font-semibold text-paper">{step.title}</h3>
-                      <p className="mt-1 text-sm text-paper/60">{step.desc}</p>
+                <div key={step.no} className="flex items-center">
+                  <Reveal delay={i * 0.08}>
+                    <div className="flex w-[90px] flex-col items-center gap-1.5 rounded-xl bg-accent-soft px-1.5 py-2.5 text-center">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-paper/60 font-display text-[10px] font-bold text-accent-ink">
+                        {step.no}
+                      </span>
+                      <h3 className="line-clamp-2 h-[2.75em] text-[11px] font-semibold leading-snug text-accent-ink">
+                        {step.title}
+                      </h3>
                     </div>
-                  </div>
-                </Reveal>
+                  </Reveal>
+                  {i < t.categoryAI.steps.length - 1 && (
+                    <div className="flex w-3 shrink-0 items-center justify-center">
+                      <div className="h-0 w-0 border-y-[3px] border-l-[4px] border-y-transparent border-l-accent/70" />
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
 
           {/* 우: 제작 샘플 */}
-          <div>
-            <Reveal>
-              <h3 className="font-display text-xl font-bold text-paper">
-                {t.categoryAI.samplesTitle}
-              </h3>
-            </Reveal>
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5">
-              {samples.map((s, i) => (
-                <Reveal key={`${s.title}-${i}`} delay={i * 0.1}>
-                  <SampleCard work={s} index={i} />
-                </Reveal>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6">
+            {samples.map((s, i) => (
+              <Reveal key={`${s.title}-${i}`} delay={i * 0.1}>
+                <SampleCard work={s} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>
@@ -68,9 +67,7 @@ function CategoryAI() {
   )
 }
 
-function SampleCard({ work, index }: { work: Work; index: number }) {
-  const { t } = useLanguage()
-  const no = `${t.categoryAI.sampleLabel} 0${index + 1}`
+function SampleCard({ work }: { work: Work }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -145,12 +142,9 @@ function SampleCard({ work, index }: { work: Work; index: number }) {
           </div>
         )}
       </div>
-      <div className="px-1.5 py-3">
-        <p className="text-[11px] font-medium text-muted">{no}</p>
-        <p className="mt-1 line-clamp-2 text-xs font-medium leading-snug text-ink">
-          {work.title}
-        </p>
-      </div>
+      <p className="mb-1.5 mt-2 line-clamp-2 h-[2.75em] px-1.5 text-xs font-medium leading-snug text-ink">
+        {work.title}
+      </p>
     </motion.div>
   )
 

@@ -10,6 +10,8 @@ const CTA_VIDEO_URL =
 
 function CTASection() {
   const { t } = useLanguage()
+  const [companyName, setCompanyName] = useState('')
+  const [contactName, setContactName] = useState('')
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<SubmitStatus>('idle')
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -40,7 +42,7 @@ function CTASection() {
 
     setStatus('loading')
     const { error } = await supabase.functions.invoke('send-inquiry', {
-      body: { email },
+      body: { email, companyName, contactName },
     })
 
     if (error) {
@@ -48,6 +50,8 @@ function CTASection() {
       return
     }
     setStatus('success')
+    setCompanyName('')
+    setContactName('')
     setEmail('')
   }
 
@@ -104,9 +108,27 @@ function CTASection() {
                 </p>
               ) : (
                 <form
-                  className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row"
+                  className="mx-auto mt-10 flex max-w-md flex-col gap-3"
                   onSubmit={handleSubmit}
                 >
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <input
+                      type="text"
+                      required
+                      value={companyName}
+                      onChange={(e) => setCompanyName(e.target.value)}
+                      placeholder={t.cta.companyPlaceholder}
+                      className="w-full rounded-full border border-paper/15 bg-paper/5 px-5 py-3.5 text-paper placeholder-paper/40 transition-colors duration-300 ease-fluid focus:border-accent focus:outline-none"
+                    />
+                    <input
+                      type="text"
+                      required
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
+                      placeholder={t.cta.contactPlaceholder}
+                      className="w-full rounded-full border border-paper/15 bg-paper/5 px-5 py-3.5 text-paper placeholder-paper/40 transition-colors duration-300 ease-fluid focus:border-accent focus:outline-none"
+                    />
+                  </div>
                   <input
                     type="email"
                     required
